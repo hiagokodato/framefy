@@ -1,4 +1,12 @@
-export type TmdbImageSize = 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original'
+export type TmdbImageSize =
+  | 'w92'
+  | 'w154'
+  | 'w185'
+  | 'w342'
+  | 'w500'
+  | 'w780'
+  | 'w1280'
+  | 'original'
 
 const IMAGE_BASE = import.meta.env.VITE_TMDB_IMAGE_BASE_URL?.trim() || 'https://image.tmdb.org/t/p'
 

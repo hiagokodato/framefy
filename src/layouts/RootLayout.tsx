@@ -4,8 +4,10 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { AppNavbar } from '@/components/navigation/AppNavbar'
 import { MobileNavDrawer } from '@/components/navigation/MobileNavDrawer'
+import { useThemeMode } from '@/hooks/useThemeMode'
 
 export function RootLayout() {
+  useThemeMode()
   const location = useLocation()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 

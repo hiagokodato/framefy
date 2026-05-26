@@ -10,8 +10,7 @@ import { useDiscoverMoviesInfinite } from '@/hooks/useDiscoverMoviesInfinite'
 export function MoodPage() {
   const [params, setSearchParams] = useSearchParams()
   const moodParam = params.get('mood')
-  const selectedId: MoodId =
-    moodParam && isMoodId(moodParam) ? moodParam : DEFAULT_MOOD_ID
+  const selectedId: MoodId = moodParam && isMoodId(moodParam) ? moodParam : DEFAULT_MOOD_ID
   const mood = getMoodById(selectedId) ?? getMoodById(DEFAULT_MOOD_ID)!
 
   const handleSelect = useCallback(

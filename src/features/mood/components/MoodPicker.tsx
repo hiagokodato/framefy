@@ -34,14 +34,18 @@ export function MoodPicker({ selectedId, onSelect }: MoodPickerProps) {
               <span
                 className={cn(
                   'flex size-10 shrink-0 items-center justify-center rounded-xl ring-1',
-                  active ? 'bg-primary/20 ring-primary/30 text-primary' : 'bg-fg/10 ring-border text-fg/80',
+                  active
+                    ? 'bg-primary/20 ring-primary/30 text-primary'
+                    : 'bg-fg/10 ring-border text-fg/80',
                 )}
               >
                 <Icon className="size-5" />
               </span>
               <span className="min-w-0">
                 <span className="block text-sm font-semibold text-fg">{mood.label}</span>
-                <span className="mt-1 block text-xs leading-relaxed text-fg/65">{mood.description}</span>
+                <span className="mt-1 block text-xs leading-relaxed text-fg/65">
+                  {mood.description}
+                </span>
               </span>
             </div>
           </motion.button>

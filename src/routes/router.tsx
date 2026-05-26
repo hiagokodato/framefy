@@ -7,6 +7,8 @@ import {
   HomePage,
   MoodPage,
   MovieDetailsPage,
+  NotFoundPage,
+  RootErrorPage,
   SearchPage,
   WatchlistPage,
 } from '@/routes/lazyPages'
@@ -14,6 +16,7 @@ import {
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <RootErrorPage />,
     children: [
       {
         path: '/',
@@ -42,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: '/movie/:id',
         element: <MovieDetailsPage />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

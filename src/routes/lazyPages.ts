@@ -21,3 +21,10 @@ export const WatchlistPage = lazy(() =>
 export const MovieDetailsPage = lazy(() =>
   import('@/pages/movie/MovieDetailsPage').then((module) => ({ default: module.MovieDetailsPage })),
 )
+
+export const NotFoundPage = lazy(() =>
+  import('@/pages/errors/NotFoundPage').then((module) => ({ default: module.NotFoundPage })),
+)
+export const RootErrorPage = lazy(() =>
+  import('@/pages/errors/RootErrorPage').then((module) => ({ default: module.RootErrorPage })),
+)

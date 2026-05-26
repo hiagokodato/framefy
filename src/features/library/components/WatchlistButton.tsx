@@ -27,7 +27,8 @@ export function WatchlistButton({ movie, showLabel = false, className }: Watchli
       size={showLabel ? 'sm' : 'icon'}
       variant={active ? 'primary' : 'ghost'}
       className={cn(
-        !showLabel && 'bg-black/60 text-white ring-1 ring-white/10 backdrop-blur-sm hover:bg-black/70',
+        !showLabel &&
+          'bg-black/60 text-white ring-1 ring-white/10 backdrop-blur-sm hover:bg-black/70',
         className,
       )}
       aria-label={active ? 'Remover da lista' : 'Adicionar à lista'}

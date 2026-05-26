@@ -1,3 +1,4 @@
+import type { DiscoverFilters } from '@/types/tmdb/discover'
 import type { TrendingTimeWindow } from '@/types/tmdb/common'
 
 export const movieKeys = {
@@ -10,4 +11,15 @@ export const movieKeys = {
   nowPlaying: (page = 1) => [...movieKeys.lists(), 'now-playing', page] as const,
   details: (id: number) => [...movieKeys.all, 'details', id] as const,
   search: (query: string, page = 1) => [...movieKeys.all, 'search', query, page] as const,
+  genres: () => [...movieKeys.all, 'genres'] as const,
+  discover: (filters: DiscoverFilters) =>
+    [
+      ...movieKeys.all,
+      'discover',
+      filters.genreIds.join(','),
+      filters.year ?? '',
+      filters.minRating ?? '',
+      filters.sortBy,
+      filters.page ?? 1,
+    ] as const,
 }

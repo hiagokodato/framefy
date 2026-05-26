@@ -13,6 +13,7 @@ export function AppProviders({ children }: AppProvidersProps) {
           queries: {
             retry: 1,
             refetchOnWindowFocus: false,
+            staleTime: 1000 * 60 * 5,
           },
         },
       }),

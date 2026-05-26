@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Compass, Home, X } from 'lucide-react'
+import { Bookmark, Compass, Heart, Home, Sparkles, X } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
@@ -10,6 +11,21 @@ type MobileNavDrawerProps = {
 }
 
 export function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+
+    closeButtonRef.current?.focus()
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose()
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [open, onClose])
+
   return (
     <AnimatePresence>
       {open ? (
@@ -24,6 +40,9 @@ export function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps) {
             exit={{ opacity: 0 }}
           />
           <motion.aside
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu de navegação"
             className="fixed left-0 top-0 z-50 h-dvh w-[86%] max-w-sm border-r border-border bg-bg p-4 shadow-2xl"
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
@@ -32,7 +51,13 @@ export function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps) {
           >
             <div className="flex items-center justify-between">
               <div className="text-sm font-semibold text-fg">Navegação</div>
-              <Button size="icon" variant="ghost" aria-label="Fechar" onClick={onClose}>
+              <Button
+                ref={closeButtonRef}
+                size="icon"
+                variant="ghost"
+                aria-label="Fechar"
+                onClick={onClose}
+              >
                 <X className="size-5" />
               </Button>
             </div>
@@ -65,6 +90,48 @@ export function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps) {
               >
                 <Compass className="size-5 text-fg/70" />
                 Explorar
+              </NavLink>
+              <NavLink
+                to="/mood"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Sparkles className="size-5 text-fg/70" />
+                Humor
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Heart className="size-5 text-fg/70" />
+                Favoritos
+              </NavLink>
+              <NavLink
+                to="/watchlist"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Bookmark className="size-5 text-fg/70" />
+                Minha lista
               </NavLink>
             </div>
           </motion.aside>

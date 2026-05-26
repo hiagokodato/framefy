@@ -74,14 +74,47 @@ export function AppNavbar({ onOpenMobileNav }: AppNavbarProps) {
               >
                 Explorar
               </NavLink>
+              <NavLink
+                to="/mood"
+                className={({ isActive }) =>
+                  `rounded-xl px-3 py-2 text-xs ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/70 ring-transparent hover:bg-fg/5 hover:text-fg'
+                  }`
+                }
+              >
+                Humor
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                className={({ isActive }) =>
+                  `rounded-xl px-3 py-2 text-xs ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/70 ring-transparent hover:bg-fg/5 hover:text-fg'
+                  }`
+                }
+              >
+                Favoritos
+              </NavLink>
+              <NavLink
+                to="/watchlist"
+                className={({ isActive }) =>
+                  `rounded-xl px-3 py-2 text-xs ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/70 ring-transparent hover:bg-fg/5 hover:text-fg'
+                  }`
+                }
+              >
+                Lista
+              </NavLink>
             </nav>
 
             <div className="flex items-center gap-2">
               <Button size="icon" variant="ghost" aria-label="Alternar tema" onClick={toggleTheme}>
                 {mode === 'dark' ? <MoonStar className="size-5" /> : <Sun className="size-5" />}
-              </Button>
-              <Button className="hidden sm:inline-flex" variant="default">
-                Entrar
               </Button>
             </div>
           </div>

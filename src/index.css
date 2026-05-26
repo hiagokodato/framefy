@@ -49,6 +49,21 @@
     @apply bg-bg text-fg;
   }
 
+  /**
+   * Native selects (especially on Windows) can render the dropdown menu
+   * with a light background even in dark mode. We set option colors to
+   * keep menus readable across themes.
+   */
+  select {
+    color: rgb(var(--fg));
+  }
+
+  select option,
+  select optgroup {
+    background-color: rgb(var(--card));
+    color: rgb(var(--fg));
+  }
+
   ::selection {
     background: rgba(229, 9, 20, 0.35);
   }

@@ -14,14 +14,14 @@ export function SearchPage() {
   return (
     <div className="space-y-6">
       <div className="glass rounded-2xl p-6">
-        <div className="text-sm font-semibold text-white">Busca</div>
-        <div className="mt-1 text-sm text-white/70">
-          Resultados para: <span className="text-white">{q || '(digite um termo na navbar)'}</span>
+        <div className="text-sm font-semibold text-fg">Busca</div>
+        <div className="mt-1 text-sm text-fg/70">
+          Resultados para: <span className="text-fg">{q || '(digite um termo na navbar)'}</span>
         </div>
       </div>
 
       {q.length < 2 ? (
-        <p className="text-sm text-white/60">Digite pelo menos 2 caracteres para buscar.</p>
+        <p className="text-sm text-fg/60">Digite pelo menos 2 caracteres para buscar.</p>
       ) : null}
 
       {isLoading ? (
@@ -33,7 +33,7 @@ export function SearchPage() {
       ) : null}
 
       {isError ? (
-        <div className="glass rounded-2xl border border-primary/30 p-4 text-sm text-white/80">
+        <div className="glass rounded-2xl border border-primary/30 p-4 text-sm text-fg/80">
           {error instanceof TmdbApiError
             ? error.message
             : 'Não foi possível buscar filmes. Tente novamente.'}
@@ -49,7 +49,7 @@ export function SearchPage() {
       ) : null}
 
       {data && data.results.length === 0 && !isLoading && !isError && q.length >= 2 ? (
-        <p className="text-sm text-white/60">Nenhum filme encontrado.</p>
+        <p className="text-sm text-fg/60">Nenhum filme encontrado.</p>
       ) : null}
     </div>
   )

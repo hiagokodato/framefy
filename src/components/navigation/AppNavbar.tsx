@@ -12,13 +12,12 @@ type AppNavbarProps = {
 }
 
 export function AppNavbar({ onOpenMobileNav }: AppNavbarProps) {
-  useThemeMode()
-  const mode = useThemeStore((s) => s.mode)
+  const mode = useThemeMode()
   const toggleTheme = useThemeStore((s) => s.toggle)
   const navigate = useNavigate()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10">
+    <header className="sticky top-0 z-50 border-b border-border">
       <div className="container-page">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
@@ -38,17 +37,17 @@ export function AppNavbar({ onOpenMobileNav }: AppNavbarProps) {
             </Button>
 
             <Link to="/" className="flex items-center gap-3">
-              <div className="size-9 rounded-xl bg-white/10 ring-1 ring-white/10" />
+              <div className="size-9 rounded-xl bg-fg/10 ring-1 ring-border" />
               <div className="leading-tight">
-                <div className="text-sm font-semibold tracking-wide text-white">Framefy</div>
-                <div className="text-xs text-white/60">Filmes, do seu jeito</div>
+                <div className="text-sm font-semibold tracking-wide text-fg">Framefy</div>
+                <div className="text-xs text-fg/60">Filmes, do seu jeito</div>
               </div>
             </Link>
           </div>
 
           <div className="hidden w-full max-w-xl px-4 md:block">
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-white/40" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-fg/40" />
               <Input
                 placeholder="Buscar filmes…"
                 className="pl-9"
@@ -68,8 +67,8 @@ export function AppNavbar({ onOpenMobileNav }: AppNavbarProps) {
               className={({ isActive }) =>
                 `rounded-xl px-3 py-2 text-xs ring-1 transition ${
                   isActive
-                    ? 'bg-white/10 text-white ring-white/15'
-                    : 'bg-transparent text-white/70 ring-transparent hover:bg-white/5 hover:text-white'
+                    ? 'bg-fg/10 text-fg ring-border'
+                    : 'bg-transparent text-fg/70 ring-transparent hover:bg-fg/5 hover:text-fg'
                 }`
               }
             >

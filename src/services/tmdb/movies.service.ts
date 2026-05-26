@@ -1,6 +1,6 @@
 import { getTmdbClient } from '@/services/tmdb/client'
 import type { PaginatedResponse, TrendingTimeWindow } from '@/types/tmdb/common'
-import type { Movie, MovieDetails, MovieListParams } from '@/types/tmdb/movie'
+import type { Movie, MovieDetailsResponse, MovieListParams } from '@/types/tmdb/movie'
 
 const client = () => getTmdbClient()
 
@@ -41,8 +41,12 @@ export async function fetchNowPlayingMovies(
   return data
 }
 
-export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> {
-  const { data } = await client().get<MovieDetails>(`/movie/${movieId}`)
+export async function fetchMovieDetails(movieId: number): Promise<MovieDetailsResponse> {
+  const { data } = await client().get<MovieDetailsResponse>(`/movie/${movieId}`, {
+    params: {
+      append_to_response: 'videos,credits,recommendations',
+    },
+  })
   return data
 }
 

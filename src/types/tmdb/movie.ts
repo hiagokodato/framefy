@@ -1,3 +1,7 @@
+import type { MovieCredits } from '@/types/tmdb/credits'
+import type { PaginatedResponse } from '@/types/tmdb/common'
+import type { MovieVideosResponse } from '@/types/tmdb/video'
+
 export type Movie = {
   id: number
   title: string
@@ -33,4 +37,10 @@ export type MovieDetails = Movie & {
 export type MovieListParams = {
   page?: number
   region?: string
+}
+
+export type MovieDetailsResponse = MovieDetails & {
+  videos: MovieVideosResponse
+  credits: MovieCredits
+  recommendations: PaginatedResponse<Movie>
 }

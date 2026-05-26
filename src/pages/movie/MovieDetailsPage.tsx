@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Star } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 
+import { MovieSaveActions } from '@/features/library/components/MovieSaveActions'
 import { MovieCard } from '@/features/movies/components/MovieCard'
 import { MovieRow } from '@/features/movies/components/MovieRow'
 import { useMovieDetails } from '@/hooks/useMovieDetails'
@@ -119,6 +120,8 @@ export function MovieDetailsPage() {
                     </span>
                   ))}
                 </div>
+
+                <MovieSaveActions movie={data} showLabel className="pt-1" />
               </div>
             </div>
           </div>

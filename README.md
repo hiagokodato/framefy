@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Framefy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movie discovery app (portfolio) inspired by Netflix / Letterboxd, powered by **TMDB**. Built with a cinematic UI, fast navigation, and personalization features without requiring login.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home** with hero + curated carousels (Trending, Top Rated, Upcoming, Now Playing)
+- **Movie details** with trailer, cast, and recommendations
+- **Search** with autocomplete + **infinite scroll**
+- **Explore** with genres + filters + infinite scroll
+- **Mood recommendations** (`/mood`) based on curated Discover presets
+- **Favorites** and **Watchlist** persisted on-device (Zustand + localStorage)
+- **Light/Dark/System** theme support
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Vite + React + TypeScript
+- TailwindCSS + shadcn-style components
+- React Router
+- React Query
+- Axios
+- Zustand
+- Framer Motion
+- ESLint + Prettier
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install dependencies:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create a `.env` file:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp .env.example .env
 ```
+
+Then set **one** of the following:
+
+- `VITE_TMDB_READ_TOKEN` (recommended) — TMDB v4 Read Access Token (Bearer)
+- `VITE_TMDB_API_KEY` — TMDB v3 API Key
+
+Run the app:
+
+```bash
+npm run dev
+```
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+
+## Notes
+
+- Favorites and watchlist are stored in **localStorage** (`framefy.favorites`, `framefy.watchlist`).
+- Authentication (Supabase) is intentionally **not implemented yet** and can be added later to sync data across devices.
+
+## Credits
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.

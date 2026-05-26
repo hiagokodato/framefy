@@ -1,14 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { RootLayout } from '@/layouts/RootLayout'
-import { ExplorePage } from '@/pages/explore/ExplorePage'
-import { HomePage } from '@/pages/home/HomePage'
-import { MovieDetailsPage } from '@/pages/movie/MovieDetailsPage'
-import { SearchPage } from '@/pages/search/SearchPage'
+import {
+  ExplorePage,
+  FavoritesPage,
+  HomePage,
+  MoodPage,
+  MovieDetailsPage,
+  NotFoundPage,
+  RootErrorPage,
+  SearchPage,
+  WatchlistPage,
+} from '@/routes/lazyPages'
 
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <RootErrorPage />,
     children: [
       {
         path: '/',
@@ -23,8 +31,24 @@ export const router = createBrowserRouter([
         element: <ExplorePage />,
       },
       {
+        path: '/mood',
+        element: <MoodPage />,
+      },
+      {
+        path: '/favorites',
+        element: <FavoritesPage />,
+      },
+      {
+        path: '/watchlist',
+        element: <WatchlistPage />,
+      },
+      {
         path: '/movie/:id',
         element: <MovieDetailsPage />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

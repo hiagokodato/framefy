@@ -1,4 +1,7 @@
+export { useDebounce } from './useDebounce'
+export { useDiscoverMovies } from './useDiscoverMovies'
 export { useMovieDetails } from './useMovieDetails'
+export { useMovieGenres } from './useMovieGenres'
 export { useNowPlayingMovies } from './useNowPlayingMovies'
 export { useSearchMovies } from './useSearchMovies'
 export { useTopRatedMovies } from './useTopRatedMovies'

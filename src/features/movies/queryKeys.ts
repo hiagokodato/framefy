@@ -11,6 +11,7 @@ export const movieKeys = {
   nowPlaying: (page = 1) => [...movieKeys.lists(), 'now-playing', page] as const,
   details: (id: number) => [...movieKeys.all, 'details', id] as const,
   search: (query: string, page = 1) => [...movieKeys.all, 'search', query, page] as const,
+  searchInfinite: (query: string) => [...movieKeys.all, 'search-infinite', query] as const,
   genres: () => [...movieKeys.all, 'genres'] as const,
   discover: (filters: DiscoverFilters) =>
     [

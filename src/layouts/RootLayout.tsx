@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
 import { AppNavbar } from '@/components/navigation/AppNavbar'
@@ -25,7 +25,15 @@ export function RootLayout() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <Outlet />
+            <Suspense
+              fallback={
+                <div className="flex min-h-[40vh] items-center justify-center text-sm text-fg/60">
+                  Carregando…
+                </div>
+              }
+            >
+              <Outlet />
+            </Suspense>
           </motion.main>
         </AnimatePresence>
       </div>

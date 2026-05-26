@@ -1,3 +1,4 @@
+import { MoodHomeTeaser } from '@/features/mood/components/MoodHomeTeaser'
 import { HomeHero } from '@/features/movies/components/HomeHero'
 import { MovieCarouselSection } from '@/features/movies/components/MovieCarouselSection'
 import { useNowPlayingMovies } from '@/hooks/useNowPlayingMovies'
@@ -20,6 +21,8 @@ export function HomePage() {
   return (
     <div className="space-y-10">
       <HomeHero movie={featured} isLoading={trending.isLoading} />
+
+      <MoodHomeTeaser />
 
       <MovieCarouselSection
         title="Em alta"

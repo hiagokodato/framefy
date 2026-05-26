@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+import { MovieSaveActions } from '@/features/library/components/MovieSaveActions'
 import { cn } from '@/lib/utils'
 import type { Movie } from '@/types/tmdb/movie'
 import { getReleaseYear } from '@/utils/movie'
@@ -18,7 +19,12 @@ export function MovieCard({ movie, className, priority = false }: MovieCardProps
   const year = getReleaseYear(movie.release_date)
 
   return (
-    <Link to={`/movie/${movie.id}`} className={cn('group block shrink-0', className)}>
+    <div className={cn('group relative shrink-0', className)}>
+      <div className="absolute left-2 top-2 z-20 flex flex-col gap-1 opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+        <MovieSaveActions movie={movie} />
+      </div>
+
+      <Link to={`/movie/${movie.id}`} className="block">
       <motion.article
         whileHover={{ y: -6 }}
         transition={{ type: 'spring', stiffness: 320, damping: 26 }}
@@ -53,6 +59,7 @@ export function MovieCard({ movie, className, priority = false }: MovieCardProps
 
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 transition group-hover:ring-white/20" />
       </motion.article>
-    </Link>
+      </Link>
+    </div>
   )
 }

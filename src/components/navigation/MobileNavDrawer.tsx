@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Compass, Home, X } from 'lucide-react'
+import { Bookmark, Compass, Heart, Home, Sparkles, X } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
@@ -65,6 +65,48 @@ export function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps) {
               >
                 <Compass className="size-5 text-fg/70" />
                 Explorar
+              </NavLink>
+              <NavLink
+                to="/mood"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Sparkles className="size-5 text-fg/70" />
+                Humor
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Heart className="size-5 text-fg/70" />
+                Favoritos
+              </NavLink>
+              <NavLink
+                to="/watchlist"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 rounded-2xl px-3 py-3 text-sm ring-1 transition ${
+                    isActive
+                      ? 'bg-fg/10 text-fg ring-border'
+                      : 'bg-transparent text-fg/80 ring-border hover:bg-fg/5'
+                  }`
+                }
+              >
+                <Bookmark className="size-5 text-fg/70" />
+                Minha lista
               </NavLink>
             </div>
           </motion.aside>

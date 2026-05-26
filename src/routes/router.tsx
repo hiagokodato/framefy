@@ -1,10 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { RootLayout } from '@/layouts/RootLayout'
-import { ExplorePage } from '@/pages/explore/ExplorePage'
-import { HomePage } from '@/pages/home/HomePage'
-import { MovieDetailsPage } from '@/pages/movie/MovieDetailsPage'
-import { SearchPage } from '@/pages/search/SearchPage'
+import {
+  ExplorePage,
+  FavoritesPage,
+  HomePage,
+  MoodPage,
+  MovieDetailsPage,
+  SearchPage,
+  WatchlistPage,
+} from '@/routes/lazyPages'
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +26,18 @@ export const router = createBrowserRouter([
       {
         path: '/explore',
         element: <ExplorePage />,
+      },
+      {
+        path: '/mood',
+        element: <MoodPage />,
+      },
+      {
+        path: '/favorites',
+        element: <FavoritesPage />,
+      },
+      {
+        path: '/watchlist',
+        element: <WatchlistPage />,
       },
       {
         path: '/movie/:id',

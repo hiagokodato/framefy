@@ -1,5 +1,6 @@
 export { useDebounce } from './useDebounce'
 export { useDiscoverMovies } from './useDiscoverMovies'
+export { useDiscoverMoviesInfinite } from './useDiscoverMoviesInfinite'
 export { useMovieDetails } from './useMovieDetails'
 export { useMovieGenres } from './useMovieGenres'
 export { useNowPlayingMovies } from './useNowPlayingMovies'

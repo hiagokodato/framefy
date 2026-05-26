@@ -22,4 +22,13 @@ export const movieKeys = {
       filters.sortBy,
       filters.page ?? 1,
     ] as const,
+  discoverInfinite: (filters: Omit<DiscoverFilters, 'page'>) =>
+    [
+      ...movieKeys.all,
+      'discover-infinite',
+      filters.genreIds.join(','),
+      filters.year ?? '',
+      filters.minRating ?? '',
+      filters.sortBy,
+    ] as const,
 }

@@ -1,53 +1,61 @@
-import { motion } from 'framer-motion'
+import { HomeHero } from '@/features/movies/components/HomeHero'
+import { MovieCarouselSection } from '@/features/movies/components/MovieCarouselSection'
+import { useNowPlayingMovies } from '@/hooks/useNowPlayingMovies'
+import { useTopRatedMovies } from '@/hooks/useTopRatedMovies'
+import { useTrendingMovies } from '@/hooks/useTrendingMovies'
+import { useUpcomingMovies } from '@/hooks/useUpcomingMovies'
+
+const CAROUSEL_LIMIT = 12
 
 export function HomePage() {
+  const trending = useTrendingMovies()
+  const topRated = useTopRatedMovies()
+  const upcoming = useUpcomingMovies()
+  const nowPlaying = useNowPlayingMovies()
+
+  const trendingResults = trending.data?.results ?? []
+  const featured = trendingResults[0]
+  const trendingRow = trendingResults.slice(1, CAROUSEL_LIMIT + 1)
+
   return (
-    <div className="space-y-8">
-      <motion.section
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-glow md:p-10"
-      >
-        <div className="cinematic-grid pointer-events-none absolute inset-0 opacity-60" />
-        <div className="pointer-events-none absolute inset-0 opacity-70">
-          <div className="absolute -top-28 left-1/2 h-56 w-[42rem] -translate-x-1/2 rounded-full bg-[rgb(var(--primary))]/20 blur-3xl" />
-          <div className="absolute -bottom-28 left-1/3 h-56 w-[42rem] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
-        </div>
+    <div className="space-y-10">
+      <HomeHero movie={featured} isLoading={trending.isLoading} />
 
-        <div className="relative">
-          <p className="text-xs font-medium tracking-[0.18em] text-white/60">DISCOVERY MODE</p>
-          <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
-            Uma experiência cinematográfica para descobrir o que assistir.
-          </h1>
-          <p className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-white/70 md:text-base">
-            Foundation pronta. Próximo passo: carrosséis de Trending/Top Rated/Upcoming/Now Playing
-            com skeletons, animações e integração TMDB.
-          </p>
+      <MovieCarouselSection
+        title="Em alta"
+        movies={trendingRow.length > 0 ? trendingRow : trendingResults.slice(0, CAROUSEL_LIMIT)}
+        isLoading={trending.isLoading}
+        isError={trending.isError}
+        error={trending.error}
+        animationDelay={0.05}
+      />
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {['Trending', 'Top Rated', 'Upcoming', 'Now Playing'].map((label) => (
-              <span
-                key={label}
-                className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/75 ring-1 ring-white/10"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+      <MovieCarouselSection
+        title="Mais bem avaliados"
+        movies={topRated.data?.results.slice(0, CAROUSEL_LIMIT)}
+        isLoading={topRated.isLoading}
+        isError={topRated.isError}
+        error={topRated.error}
+        animationDelay={0.1}
+      />
 
-      <section className="grid gap-4 md:grid-cols-2">
-        {['Arquitetura por features', 'Design system cinematográfico'].map((title) => (
-          <div key={title} className="glass rounded-2xl p-6">
-            <div className="text-sm font-semibold text-white">{title}</div>
-            <div className="mt-1 text-sm text-white/70">
-              Estrutura base pronta para evoluir com rotas, estados, loading states e animações.
-            </div>
-          </div>
-        ))}
-      </section>
+      <MovieCarouselSection
+        title="Em breve"
+        movies={upcoming.data?.results.slice(0, CAROUSEL_LIMIT)}
+        isLoading={upcoming.isLoading}
+        isError={upcoming.isError}
+        error={upcoming.error}
+        animationDelay={0.15}
+      />
+
+      <MovieCarouselSection
+        title="Em cartaz"
+        movies={nowPlaying.data?.results.slice(0, CAROUSEL_LIMIT)}
+        isLoading={nowPlaying.isLoading}
+        isError={nowPlaying.isError}
+        error={nowPlaying.error}
+        animationDelay={0.2}
+      />
     </div>
   )
 }

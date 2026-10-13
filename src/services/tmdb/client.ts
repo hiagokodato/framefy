@@ -13,14 +13,8 @@ export function getTmdbClient(): AxiosInstance {
 
   instance = axios.create({
     baseURL: env.baseURL,
-    headers: {
-      Accept: 'application/json',
-      ...(env.readToken ? { Authorization: `Bearer ${env.readToken}` } : {}),
-    },
-    params: {
-      language: env.language,
-      ...(env.apiKey ? { api_key: env.apiKey } : {}),
-    },
+    headers: { Accept: 'application/json' },
+    params: { language: env.language },
   })
 
   instance.interceptors.response.use(

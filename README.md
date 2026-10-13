@@ -39,8 +39,10 @@ cp .env.example .env
 
 Then set **one** of the following:
 
-- `VITE_TMDB_READ_TOKEN` (recommended) — TMDB v4 Read Access Token (Bearer)
-- `VITE_TMDB_API_KEY` — TMDB v3 API Key
+- `TMDB_READ_TOKEN` (recommended) — TMDB v4 Read Access Token (Bearer)
+- `TMDB_API_KEY` — TMDB v3 API Key
+
+These have no `VITE_` prefix on purpose: requests go through `/api/tmdb` (a Vercel Function in production, the Vite proxy in development), so the token stays on the server and never ships in the browser bundle. On Vercel, set them under **Settings → Environment Variables**.
 
 Run the app:
 
